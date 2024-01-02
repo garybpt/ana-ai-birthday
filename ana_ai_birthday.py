@@ -28,14 +28,6 @@ def load_posts():
         data = {}
     return data
 
-def load_messages():
-    try:
-        with open('messages.json', 'r') as file:
-            messages = json.load(file)
-    except FileNotFoundError:
-        messages = ["Default message without {current_post_count}"]
-    return messages
-
 def save_posts(data):
     with open('posts.json', 'w') as file:
         json.dump(data, file, indent=4)
@@ -63,8 +55,30 @@ async def daily_message():
         posts['count'] = current_post_count
         save_posts(posts)
 
-        messages = load_messages()
-        selected_message = random.choice(messages).format(current_post_count)
+        messages = [
+            f"Our amazing wellbeing coach, <@{bot_id}>, turns {current_post_count} today! Happy birthday!! 🥳",
+            f"Wishing a happy {current_post_count}st birthday to our incredible wellbeing coach, <@{bot_id}>! 🎂🎉",
+            f"Happy birthday to the one and only <@{bot_id}>, our fantastic wellbeing coach! 🎈🥳 Turning {current_post_count} today!",
+            f"Join us in celebrating the {current_post_count}st birthday of our wonderful wellbeing coach, <@{bot_id}>! 🎉🎂",
+            f"It's a special day! Our wellbeing coach, <@{bot_id}>, turns {current_post_count} today! 🎈🎁 Happy birthday!",
+            f"Cheers to <@{bot_id}>, our amazing wellbeing coach, on turning {current_post_count} today! 🥂🎉 Happy birthday!",
+            f"Happy {current_post_count}st birthday to the heart and soul of our server, <@{bot_id}>! 🎂🎈",
+            f"Sending birthday wishes to our incredible wellbeing coach, <@{bot_id}>, who turns {current_post_count} today! 🎉🥳",
+            f"A big happy birthday to <@{bot_id}>, our beloved wellbeing coach, on turning {current_post_count} today! 🎈🎂",
+            f"Join us in celebrating the {current_post_count}st birthday of our trusted wellbeing companion, <@{bot_id}>! 🎊🥳",
+            f"Happy birthday, <@{bot_id}>! Our wellbeing coach turns {current_post_count} today! 🎂🎉",
+            f"Wishing a fantastic {current_post_count}st birthday to our supportive wellbeing coach, <@{bot_id}>! 🎈🎁",
+            f"Our incredible wellbeing coach, <@{bot_id}>, celebrates turning {current_post_count} today! Happy birthday! 🥳🎂",
+            f"Raise a toast to <@{bot_id}>, our wonderful wellbeing coach, on its {current_post_count}st birthday! 🥂🎉",
+            f"Happy {current_post_count}st birthday to the guiding light of our server, <@{bot_id}>! 🎂🎈",
+            f"Join us in celebrating the {current_post_count}st birthday of <@{bot_id}>, our cherished wellbeing coach! 🎉🥳",
+            f"Wishing a joyful {current_post_count}st birthday to our indispensable wellbeing coach, <@{bot_id}>! 🎈🎂",
+            f"Happy birthday to the heartbeat of our server, <@{bot_id}>, who turns {current_post_count} today! 🎉🥳",
+            f"A special shoutout to <@{bot_id}> on its {current_post_count}st birthday! 🎂🎈 Happy birthday, wellbeing coach!",
+            f"Join us in wishing a happy {current_post_count}st birthday to <@{bot_id}>, our incredible wellbeing coach! 🥳🎉"
+        ]
+        
+        selected_message = random.choice(messages)
         
         await channel.send(selected_message)
 
