@@ -12,6 +12,7 @@ load_dotenv()
 int_bot_token = os.getenv('BOT_TOKEN')
 int_guild_id = int(os.getenv('GUILD_ID'))
 int_channel_id = int(os.getenv('CHANNEL_ID'))
+bot_id = int(os.getenv('BOT_ID'))
 
 intents = discord.Intents.default()
 intents.messages = True
