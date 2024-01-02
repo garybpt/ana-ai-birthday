@@ -6,6 +6,7 @@ import random
 from pytz import timezone
 from dotenv import load_dotenv
 import os
+import asyncio
 
 load_dotenv()
 
@@ -86,5 +87,9 @@ async def daily_message():
 async def before():
     await bot.wait_until_ready()
 
-daily_message.start()
-bot.run(int_bot_token)
+# Use asyncio to run the bot within an asynchronous context
+async def run_bot():
+    await bot.start(int_bot_token)
+
+# Run the bot
+asyncio.run(run_bot())
